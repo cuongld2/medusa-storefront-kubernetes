@@ -4,7 +4,7 @@ import Head from "@modules/common/components/head"
 import Layout from "@modules/layout/templates"
 import OrderDetailsTemplate from "@modules/order/templates/order-details-template"
 import SkeletonOrderConfirmed from "@modules/skeletons/templates/skeleton-order-confirmed"
-import { GetStaticPaths, GetStaticProps } from "next"
+import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
 import { ReactElement } from "react"
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query"
@@ -60,14 +60,14 @@ Confirmed.getLayout = (page: ReactElement) => {
   return <Layout>{page}</Layout>
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  }
-}
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: "blocking",
+//   }
+// }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id as string
   const queryClient = new QueryClient()
 

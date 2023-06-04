@@ -6,7 +6,7 @@ import Layout from "@modules/layout/templates"
 import ProductTemplate from "@modules/products/templates"
 import SkeletonProductPage from "@modules/skeletons/templates/skeleton-product-page"
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query"
-import { GetStaticPaths, GetStaticProps } from "next"
+import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
 import { ParsedUrlQuery } from "querystring"
 import { ReactElement } from "react"
@@ -71,15 +71,15 @@ ProductPage.getLayout = (page: ReactElement) => {
   return <Layout>{page}</Layout>
 }
 
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const handles = await getProductHandles()
-  return {
-    paths: handles.map((handle) => ({ params: { handle } })),
-    fallback: true,
-  }
-}
+// export const getStaticPaths: GetStaticPaths<Params> = async () => {
+//   const handles = await getProductHandles()
+//   return {
+//     paths: handles.map((handle) => ({ params: { handle } })),
+//     fallback: true,
+//   }
+// }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const handle = context.params?.handle as string
   const queryClient = new QueryClient()
 
