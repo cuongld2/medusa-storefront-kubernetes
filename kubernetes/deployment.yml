@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: medusa-storefront
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       name: medusa-storefront
@@ -15,16 +15,10 @@ spec:
     spec:
       containers:
       - name: application
-        image: your_docker_hub_account/medusa-storefront:latest
+        image: cuongld2/medusa-storefront
         imagePullPolicy: Always
         envFrom:
         - secretRef:
             name: dockerhub-secret
         ports:
           - containerPort: 3000
-        env:
-        # Define the environment variable
-        - name: PROVIDER_URL 
-          value: medusa-backend-service
-        - name: PROVIDER_PORT
-          value: "9000"
