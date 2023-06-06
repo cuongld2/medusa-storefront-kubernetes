@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: application
-        image: cuongld2/medusa-storefront
+        image: your-dockerhub-account/medusa-storefront
         imagePullPolicy: Always
         envFrom:
         - secretRef:
